@@ -11,7 +11,9 @@ and  [Roconnect Java](https://github.com/rhomobile/rhoconnect-java) plugin.
 
 Prerequisites:
 
-* Java (1.6), Maven2 (2.2.1), Git
-* Eclipse Java EE IDE for Web Developers.
+* Java (1.6)
+* Maven2 (2.2.1)
+* Git
+* Rhoconncect-java plugin jar (https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0-SNAPSHOT.jar)
 
-TODO:
+TODO: describe how to tweak it to user's environment.
