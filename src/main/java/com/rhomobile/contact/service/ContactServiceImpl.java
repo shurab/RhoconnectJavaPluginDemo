@@ -59,10 +59,9 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
         return contactDAO.getContact(id);
     }
 
-    // TODO    
-	@Override
+    @Override
     @Transactional
-	public Map<String, Object> rhoconnectQuery(String partition) {
+    public Map<String, Object> rhoconnectQuery(String partition) {
         Map<String, Object> h = new HashMap<String, Object>();
         List<Contact> contacts =  listContact();
         
@@ -72,11 +71,11 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
             h.put(c.getId().toString(), c);
         }
         return h;
-	}
+    }
 
-	@Override
+    @Override
     @Transactional
-	public Integer rhoconnectCreate(String partition, Map<String, Object> attributes) {
+    public Integer rhoconnectCreate(String partition, Map<String, Object> attributes) {
         Contact contact = new Contact();
         try {
             BeanUtils.populate(contact, attributes);
@@ -86,9 +85,9 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
             e.printStackTrace();
         }
 		return null;
-	}
+    }
 
-	@Override
+    @Override
     @Transactional
 	public Integer rhoconnectUpdate(String partition, Map<String, Object> attributes) {
         Integer id = Integer.parseInt((String)attributes.get("id"));
@@ -101,21 +100,21 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
             e.printStackTrace();
         }
 		return null;
-	}
+    }
 
-	@Override
+    @Override
     @Transactional
-	public Integer rhoconnetDelete(String partition, Map<String, Object> attributes) {
+    public Integer rhoconnetDelete(String partition, Map<String, Object> attributes) {
         String objId = (String)attributes.get("id");
         Integer id = Integer.parseInt(objId);
         removeContact(id);       
         return id;
-	}
+    }
 
-	@Override
-	public String getPartition() {
+    @Override
+    public String getPartition() {
         // Data partitioning: i.e. your user name for filtering data on per user basis 
-		return "alexb";
-	}
+	return "alexb";
+    }
 
  }
