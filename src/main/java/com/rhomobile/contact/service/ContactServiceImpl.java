@@ -30,23 +30,20 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
     @Transactional
     public int addContact(Contact contact) {
         int id = contactDAO.addContact(contact);
-        String partition  = getPartition(); //contactResource.getPartition();
-        client.notifyOnCreate(sourceName, partition, Integer.toString(id), contact);
+        client.notifyOnCreate(sourceName, getPartition(), Integer.toString(id), contact);
         return id;
     }
 
     @Transactional
     public void updateContact(Contact contact) {
         contactDAO.updateContact(contact);
-        String partition  = getPartition(); //contactResource.getPartition();
-        client.notifyOnUpdate(sourceName, partition, Integer.toString(contact.getId()), contact);       
+        client.notifyOnUpdate(sourceName, getPartition(), Integer.toString(contact.getId()), contact);       
     }
 
     @Transactional
     public void removeContact(Integer id) {
         contactDAO.removeContact(id);
-        String partition  = getPartition(); //contactResource.getPartition();
-        client.notifyOnDelete(sourceName, partition, Integer.toString(id));
+        client.notifyOnDelete(sourceName, getPartition(), Integer.toString(id));
     }
 
     @Transactional
@@ -84,7 +81,7 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
         } catch(Exception e) {
             e.printStackTrace();
         }
-		return null;
+        return null;
     }
 
     @Override
@@ -99,7 +96,7 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
         } catch(Exception e) {
             e.printStackTrace();
         }
-		return null;
+        return null;
     }
 
     @Override
@@ -114,7 +111,7 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
     @Override
     public String getPartition() {
         // Data partitioning: i.e. your user name for filtering data on per user basis 
-	return "alexb";
+        return "alexb";
     }
 
  }
