@@ -27,3 +27,71 @@ To run demo application you need to clone it to you PC:
     
 and tweak it.
     
+Default configuration of demo application assumes that all components (rhoconnect app, rhodes app, and demo app) are running on the the same host. To run it in your environment you should edit the following settings:
+
+* set absolute path to hoconnect-java jar file (tag `<systemPath>` in pom.xml file) 
+* edit rhoconnect server's api_token (property `apiToken` in WEB-INF/spring-servlet.xml file)
+* edit partition string according your preferences (com/rhomobile/contact/service/ContactServiceImpl.java file)
+
+Steps, required to create rhodes application:
+
+    :::term 
+	rhodes app contact-app
+	cd contact-app
+    rhodes model contact lastname,firstname,email,telephone
+
+Edit rhoconfig.txt file
+
+	:::term 
+	...
+	syncserver = 'http://localhost:9292/application'
+	...
+
+Edit app/index.erb
+
+	:::term 
+	...
+	<li><a href="Contact">Contacts</a></li>
+	...
+
+Edit app/Contact/contact.rb
+	
+	:::term 
+	...
+	enable :sync
+	...
+
+Now you are ready to synchronize back-ane data with rhodes application.
+In 1st terminal launch rhoconnect server:
+
+	:::term 
+	rake rhoconnect:start
+	
+In 2d terminal window start  demo application:
+	
+	:::term 
+	mvn jetty:run
+	
+If you correctly adjusted demo configuration, then in 1st terminal you see logging output that java backend application successfully registered by rhoconect server:
+	
+	:::term
+	... 
+	127.0.0.1 - - [21/Nov/2011 12:31:53] "POST /api/source/save_adapter HTTP/1.1" 200 30 0.0026
+	...
+	
+And finally in 3d terminal window start rhodes application:
+	
+	:::term
+	rake run:iphone:rhosimulator
+	
+	
+ 	
+
+
+
+ 
+
+
+rake run:iphone:rhosimulator
+
+    
