@@ -61,7 +61,7 @@ Edit app/Contact/contact.rb
 	enable :sync
 	...
 
-Now you are ready to synchronize back-ane data with rhodes application.
+Now you are ready to synchronize java back-enad data with your rhodes application.
 In 1st terminal launch rhoconnect server:
 
 	:::term 
@@ -72,26 +72,15 @@ In 2d terminal window start  demo application:
 	:::term 
 	mvn jetty:run
 	
-If you correctly adjusted demo configuration, then in 1st terminal you see logging output that java backend application successfully registered by rhoconect server:
+If you correctly adjusted demo configurations, then in 1st terminal you see logging output that java backend application successfully registered by rhoconect server:
 	
 	:::term
 	... 
 	127.0.0.1 - - [21/Nov/2011 12:31:53] "POST /api/source/save_adapter HTTP/1.1" 200 30 0.0026
 	...
 	
-And finally in 3d terminal window start rhodes application:
+And finally, in 3d terminal window start rhodes application:
 	
 	:::term
 	rake run:iphone:rhosimulator
-	
-	
- 	
-
-
-
- 
-
-
-rake run:iphone:rhosimulator
-
-    
+	    
