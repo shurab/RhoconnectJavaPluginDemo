@@ -18,5 +18,12 @@ Prerequisites:
 * [Rhoconnect application](http://docs.rhomobile.com/rhoconnect/tutorial)
 * [Rhodes application](http://docs.rhomobile.com/rhodes/tutorial)
 
-TODO: describe how to tweak it to user's environment.
+## Gettring started
 
+To run demo application you need to clone it to you PC:
+
+    :::term 
+    git clone git@github.com:shurab/RhoconnectJavaPluginDemo.git
+    
+and tweak it.
+    
