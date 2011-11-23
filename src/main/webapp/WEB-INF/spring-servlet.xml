@@ -18,10 +18,10 @@
         http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-	<context:component-scan base-package="com.rhomobile.contact" />	
+	<context:component-scan base-package="com.rhomobile.contact" />
+	<tx:annotation-driven />
 
     <bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" />
-
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
@@ -35,7 +35,6 @@
 		<property name="basename" value="classpath:messages" />
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-
     <!-- Embedded in-memory database HSQL -->
 	<jdbc:embedded-database id="dataSource">
 		<jdbc:script location="classpath:schema.sql"/>
@@ -58,49 +57,58 @@
 			</props>
 		</property>
 	</bean>
-
-	<tx:annotation-driven />
-
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
-	
-	<!-- rhoconnect-java plugin packages, converters, and beans -->
-	<context:component-scan base-package="com.rhomobile.rhoconnect.controller" /> 
 
+	<!--  Use the following beans with MySQL only  
+	<bean id="propertyConfigurer"
+	  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"
+	  p:location="/WEB-INF/jdbc.properties" />
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		p:driverClassName="${jdbc.driverClassName}"
+		p:url="${jdbc.databaseurl}" p:username="${jdbc.username}"
+		p:password="${jdbc.password}" />
+	-->
+
+	<!-- rhoconnect-java plugin packages -->
+	<context:component-scan base-package="com.rhomobile.rhoconnect.controller" />
+
+	<!-- rhoconnect-java plugin converters -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
-	        <property name="order" value="1" />
-	        <property name="messageConverters">
-	            <list>
-	                <ref bean="stringHttpMessageConverter"/>
-	                <ref bean="jsonConverter" />
-	            </list>
-	        </property>
+    	<property name="order" value="1" />
+    	<property name="messageConverters">
+        	<list>
+            	<ref bean="stringHttpMessageConverter"/>
+            	<ref bean="jsonConverter" />
+        	</list>
+    	</property>
 	</bean>
 	<bean id="jsonConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
-	        <property name="supportedMediaTypes" value="application/json" />
+    	<property name="supportedMediaTypes" value="application/json" />
 	</bean>
 	<bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
 	</bean>
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
-		<property name="messageConverters">
-	    	<list>
-	        	<ref bean="jsonConverter" />
-	            <ref bean="stringHttpMessageConverter"/>
-	        </list>
-	    </property>
+    	<property name="messageConverters">
+        	<list>
+            	<ref bean="jsonConverter" />
+            	<ref bean="stringHttpMessageConverter"/>
+        	</list>
+    	</property>
 	</bean>    
 
+	<!-- rhoconnect-java plugin beans -->
 	<bean id="rhoconnectClient" class = "com.rhomobile.rhoconnect.RhoconnectClient" init-method="setAppEndpoint" >
-		<property name="restTemplate"><ref bean="restTemplate"/></property>
-	    <property name="endpointUrl" value="http://localhost:9292" />
-	    <property name="appEndpoint" value="http://localhost:8080/contacts" />
-	    <property name="apiToken" value="sometokenforme" />
+    	<property name="restTemplate"><ref bean="restTemplate"/></property>
+    	<property name="endpointUrl" value="http://localhost:9292" />
+    	<property name="appEndpoint" value="http://localhost:8080/contacts" />
+    	<property name="apiToken"    value="sometokenforme" />
 	</bean>
 	<bean id="dispatcher" class = "com.rhomobile.rhoconnect.RhoconnectDispatcher"></bean>
-    
-	<bean id="authenticate" class = "com.acme.AcmeAuthenticate" />
+
+	<bean id="authenticate" class = "com.rhomobile.contact.ContactAuthenticate" />
 
 </beans>
