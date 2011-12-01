@@ -18,7 +18,7 @@ Prerequisites:
 * [Rhoconnect application](http://docs.rhomobile.com/rhoconnect/tutorial)
 * [Rhodes application](http://docs.rhomobile.com/rhodes/tutorial)
 
-## Gettring started
+## Getting started
 
 To run demo application you need to clone it to you PC:
 
@@ -30,11 +30,11 @@ and tweak it.
 Default configuration of demo application assumes that all components (rhoconnect app, rhodes app, and demo app) are running on the the same host. 
 To run it in your environment you should edit the following settings:
 
-* add rhoconnect-java plugin jar file to your local Maven2 repository 
+* add the rhoconnect-java plugin jar file to your local Maven2 repository 
 * edit rhoconnect server's api_token (property `apiToken` in WEB-INF/spring-servlet.xml file)
 * edit partition string according your preferences (com/rhomobile/contact/service/ContactServiceImpl.java file)
 
-### Adding the rhoconnect-java jar to your Maven 2 project
+### Adding the rhoconnect-java plugin to your Maven 2 project
 
 At this moment rhoconnect-plugin jar is not available in Maven public repositories and you need install the jar manually into your Maven's local repository.
 Download the  [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0-SNAPSHOT.jar) plugin jar file 
@@ -43,7 +43,14 @@ and put it into your hard drive, and issue the following Maven's command:
     :::term
     $ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-1.0-SNAPSHOT.jar -DgroupId=com.rhomobile.rhoconnect  -DartifactId=rhoconnect-java -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 
-### Create Rhodes application 
+### Creating Rhoconnect application and editing `api_token`
+
+
+
+### Editing partitioning
+
+
+### Creating Rhodes application 
 
 Steps, required to create rhodes application:
 
@@ -72,6 +79,8 @@ Edit app/Contact/contact.rb
     ...
     enable :sync
     ...
+
+### Synchronizing data between java back-end and rhodes mobile application
 
 Now you are ready to synchronize java back-end data with your rhodes application.
 In the 1st terminal launch rhoconnect server:
