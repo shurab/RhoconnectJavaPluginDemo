@@ -36,19 +36,37 @@ To run it in your environment you should edit the following settings:
 
 ### Adding the rhoconnect-java plugin to your Maven 2 project
 
-At this moment rhoconnect-plugin jar is not available in Maven public repositories and you need install the jar manually into your Maven's local repository.
+At this moment rhoconnect-plugin jar is not available in Maven public repositories and you need install it manually into your Maven's local repository.
 Download the  [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0-SNAPSHOT.jar) plugin jar file 
 and put it into your hard drive, and issue the following Maven's command:
 
     :::term
     $ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-1.0-SNAPSHOT.jar -DgroupId=com.rhomobile.rhoconnect  -DartifactId=rhoconnect-java -Dversion=1.0-SNAPSHOT -Dpackaging=jar
 
-### Creating Rhoconnect application and editing `api_token`
+### Creating RhoConnect application and editing `api_token`
 
+Create RhoConnect sync application:
 
+    :::term 
+    $ rhoconnect app syncserver
+    $ cd syncserver; bundle install
 
+Edit settings/settings.yml by adding to `development` section `api_token` key/value pair. Value is a matter of your choice :-): 
+
+    :development:
+       ...
+       :api_token: my_some_pretty_sekret_token
+
+And set the same `api_token` value for property `apiToken` in WEB-INF/spring-servlet.xml file:
+
+    <bean id="rhoconnectClient" class = "com.rhomobile.rhoconnect.RhoconnectClient" init-method="setAppEndpoint" >
+        <!-- -->
+	    <property name="apiToken" value="my_some_pretty_sekret_token" />	
+    </bean>
+    
 ### Editing partitioning
 
+If you wish login to rhodes application under your name, then edit return value of `getPartition` method in com/rhomobile/contact/service/ContactServiceImpl.java file to something valuable for you.
 
 ### Creating Rhodes application 
 

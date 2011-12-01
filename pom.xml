@@ -47,12 +47,12 @@
       	<type>jar</type>
       	<optional>false</optional>
     </dependency>
+    <!-- Rhoconnect-java plugin -->
     <dependency>
-	  	<groupId>com.rhomobile.rhoconnect</groupId>
-	  	<artifactId>rhoconnect-java</artifactId>
-	  	<version>1.0-SNAPSHOT</version>
-	  	<scope>system</scope>
-	  	<systemPath>/Users/alexb/workspace/rhoconnect-java/target/rhoconnect-java-1.0-SNAPSHOT.jar</systemPath>
+        <groupId>com.rhomobile.rhoconnect</groupId>
+        <artifactId>rhoconnect-java</artifactId>
+        <version>1.0-SNAPSHOT</version>
+        <type>jar</type>
     </dependency>
     <!-- Log4j -->
     <dependency>
