@@ -18,8 +18,6 @@ import com.rhomobile.rhoconnect.RhoconnectResource;
 
 @Service
 public class ContactServiceImpl implements ContactService, RhoconnectResource {
-    //private static final Logger logger = Logger.getLogger(ContactServiceImpl.class);
-
     @Autowired
     private ContactDAO contactDAO;
     @Autowired
@@ -30,20 +28,20 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
     @Transactional
     public int addContact(Contact contact) {
         int id = contactDAO.addContact(contact);
-        client.notifyOnCreate(sourceName, getPartition(), Integer.toString(id), contact);
+        client.notifyOnCreate(sourceName, Integer.toString(id), contact);
         return id;
     }
 
     @Transactional
     public void updateContact(Contact contact) {
         contactDAO.updateContact(contact);
-        client.notifyOnUpdate(sourceName, getPartition(), Integer.toString(contact.getId()), contact);       
+        client.notifyOnUpdate(sourceName, Integer.toString(contact.getId()), contact);
     }
 
     @Transactional
     public void removeContact(Integer id) {
         contactDAO.removeContact(id);
-        client.notifyOnDelete(sourceName, getPartition(), Integer.toString(id));
+        client.notifyOnDelete(sourceName, Integer.toString(id));
     }
 
     @Transactional
@@ -106,12 +104,6 @@ public class ContactServiceImpl implements ContactService, RhoconnectResource {
         Integer id = Integer.parseInt(objId);
         removeContact(id);       
         return id;
-    }
-
-    @Override
-    public String getPartition() {
-        // Data partitioning: i.e. your user name for filtering data on per user basis 
-        return "alexb";
     }
 
  }
