@@ -43,7 +43,7 @@ and put it into your hard drive, and issue the following Maven's command:
     :::term
     $ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-1.0-1.jar -DgroupId=com.rhomobile.rhoconnect  -DartifactId=rhoconnect-java -Dversion=1.0-1 -Dpackaging=jar
 
-### Creating RhoConnect application and editing `api_token`
+### Creating RhoConnect application and editing "api_token"
 
 Create RhoConnect sync application:
 
