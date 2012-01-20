@@ -14,7 +14,7 @@ Prerequisites:
 * Java (1.6)
 * Maven2 (2.2.1)
 * Git
-* [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0-SNAPSHOT.jar) plugin jar
+* [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0.1.jar) plugin jar
 * [Rhoconnect application](http://docs.rhomobile.com/rhoconnect/tutorial)
 * [Rhodes application](http://docs.rhomobile.com/rhodes/tutorial)
 
