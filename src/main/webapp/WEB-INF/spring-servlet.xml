@@ -105,7 +105,7 @@
     	<property name="restTemplate"><ref bean="restTemplate"/></property>
     	<property name="endpointUrl" value="http://localhost:9292" />
     	<property name="appEndpoint" value="http://localhost:8080/contacts" />
-        <property name="apiToken" value="my_some_pretty_sekret_token" />
+        <property name="apiToken" value="my-rhoconnect-token" />
     </bean>
 	<bean id="dispatcher" class = "com.rhomobile.rhoconnect.RhoconnectDispatcher"></bean>
 
