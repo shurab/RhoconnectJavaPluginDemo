@@ -55,13 +55,13 @@ Edit settings/settings.yml by adding to `development` section `api_token` key/va
 
     :development:
        ...
-       :api_token: my_some_pretty_sekret_token
+       :api_token: my-rhoconnect-token
 
 And set the same `api_token` value for property `apiToken` in WEB-INF/spring-servlet.xml file:
 
     <bean id="rhoconnectClient" class = "com.rhomobile.rhoconnect.RhoconnectClient" init-method="setAppEndpoint" >
         <!-- -->
-	    <property name="apiToken" value="my_some_pretty_sekret_token" />	
+	    <property name="apiToken" value="my-rhoconnect-token" />	
     </bean>
     
 ### Editing partitioning
