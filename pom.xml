@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">  <modelVersion>4.0.0</modelVersion>
   <groupId>contacts</groupId>
   <artifactId>contacts</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <description></description>
 
   <build>
@@ -51,8 +51,25 @@
     <dependency>
         <groupId>com.rhomobile.rhoconnect</groupId>
         <artifactId>rhoconnect-java</artifactId>
-        <version>1.0.1</version>
+        <version>1.0.2</version>
         <type>jar</type>
+    </dependency>
+    <!-- Rhoconnect-java-api and its dependencies -->
+    <dependency>
+        <groupId>com.msi.rhoconnect.api</groupId>
+        <artifactId>rhoconnect-java-api</artifactId>
+        <version>1.0.0</version>
+        <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.jersey</groupId>
+      <artifactId>jersey-bundle</artifactId>
+      <version>1.17</version>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.json-simple</groupId>
+      <artifactId>json-simple</artifactId>
+      <version>1.1.1</version>
     </dependency>
     <!-- Log4j -->
     <dependency>
