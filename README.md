@@ -12,9 +12,10 @@ and  [Roconnect Java](https://github.com/rhomobile/rhoconnect-java) plugin.
 Prerequisites:
 
 * Java (1.6)
-* Maven2 (2.2.1)
+* Maven
 * Git
-* [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0-SNAPSHOT.jar) plugin jar
+* [rhoconnect-java](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-1.0.2.jar) RhoConnect Java plugin jar
+* [rhoconnect-java-api](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-api-1.0.0.jar) RhoConnect Java API jar
 * [Rhoconnect application](http://docs.rhomobile.com/rhoconnect/tutorial)
 * [Rhodes application](http://docs.rhomobile.com/rhodes/tutorial)
 
@@ -31,21 +32,25 @@ Default configuration of demo application assumes that all components (rhoconnec
 To run it in your environment you should edit the following settings:
 
 * add the rhoconnect-java plugin jar file to your local Maven2 repository 
+* add the rhoconnect-java-api jar file to your local Maven2 repository 
 * edit rhoconnect server's api_token (property `apiToken` in WEB-INF/spring-servlet.xml file)
 * edit partition string according your preferences (com/rhomobile/contact/service/ContactServiceImpl.java file)
 
 ### Adding the rhoconnect-java plugin to your Maven 2 project
 
-At this moment rhoconnect-plugin jar is not available in Maven public repositories and you need install it manually into your Maven's local repository.
-Download the  [Rhoconncect-java](https://github.com/downloads/rhomobile/rhoconnect-java/rhoconnect-java-1.0.1.jar) plugin jar file 
-and put it into your hard drive, and issue the following Maven's command:
+At this moment rhoconnect-java and rhoconnect-java-api are not available in Maven public repositories and you need install them manually into your Maven's local repository.
+Download [rhoconnect-java](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-1.0.2.jar) and [rhoconnect-java-api](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-api-1.0.0.jar) files  
+and put them into your hard drive, and issue the following Maven's commands:
 
     :::term
-    $ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-1.0-1.jar -DgroupId=com.rhomobile.rhoconnect  -DartifactId=rhoconnect-java -Dversion=1.0-1 -Dpackaging=jar
-
+	$ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-api-1.0.0.jar -DgroupId=com.msi.rhoconnect.api \
+	  -DartifactId=rhoconnect-java-api -Dversion=1.0.0 -Dpackaging=jar
+	$ mvn install:install-file -Dfile=/path-to-jar/rhoconnect-java-1.0.2.jar \
+	  -DgroupId=com.rhomobile.rhoconnect  -DartifactId=rhoconnect-java -Dversion=1.0.2 -Dpackaging=jar
+	
 ### Creating RhoConnect application and editing "api_token"
 
-Create RhoConnect sync application:
+Create RhoConnect sync application, if you wanted use custom "api_token":
 
     :::term 
     $ rhoconnect app syncserver
@@ -64,6 +69,13 @@ And set the same `api_token` value for property `apiToken` in WEB-INF/spring-ser
 	    <property name="apiToken" value="my_some_pretty_sekret_token" />	
     </bean>
     
+In the simplest case you need only start 'vanilla' rhoconnect app:
+
+	:::term 
+	$ redis-cli flushdb
+	$ rhoconnect start
+
+ 
 ### Editing partitioning
 
 If you want your data to be partitioned by your login name (user name), then edit in com.rhomobile.contact/ContactAuthenticate file return value of `authenticate` method.  Bu default, application partitioned by ‘app’ (the data will be shared among all users).
