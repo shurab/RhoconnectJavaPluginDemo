@@ -31,12 +31,12 @@ and tweak it.
 Default configuration of demo application assumes that all components (rhoconnect app, rhodes app, and demo app) are running on the the same host. 
 To run it in your environment you should edit the following settings:
 
-* add the rhoconnect-java plugin jar file to your local Maven2 repository 
-* add the rhoconnect-java-api jar file to your local Maven2 repository 
+* add the rhoconnect-java plugin jar file to your local Maven repository 
+* add the rhoconnect-java-api jar file to your local Maven repository 
 * edit rhoconnect server's api_token (property `apiToken` in WEB-INF/spring-servlet.xml file)
 * edit partition string according your preferences (com/rhomobile/contact/service/ContactServiceImpl.java file)
 
-### Adding the rhoconnect-java plugin to your Maven 2 project
+### Adding the rhoconnect-java plugin to your Maven project
 
 At this moment rhoconnect-java and rhoconnect-java-api are not available in Maven public repositories and you need install them manually into your Maven's local repository.
 Download [rhoconnect-java](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-1.0.2.jar) and [rhoconnect-java-api](https://s3.amazonaws.com/rhoconnect-java/rhoconnect-java-api-1.0.0.jar) files  
@@ -60,13 +60,13 @@ Edit settings/settings.yml by adding to `development` section `api_token` key/va
 
     :development:
        ...
-       :api_token: my_some_pretty_sekret_token
+       :api_token: my-rhoconnect-token
 
 And set the same `api_token` value for property `apiToken` in WEB-INF/spring-servlet.xml file:
 
     <bean id="rhoconnectClient" class = "com.rhomobile.rhoconnect.RhoconnectClient" init-method="setAppEndpoint" >
         <!-- -->
-	    <property name="apiToken" value="my_some_pretty_sekret_token" />	
+	    <property name="apiToken" value="my-rhoconnect-token" />	
     </bean>
     
 In the simplest case you need only start 'vanilla' rhoconnect app:
